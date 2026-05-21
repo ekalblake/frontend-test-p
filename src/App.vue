@@ -1,7 +1,9 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <HelloWorld />
+	<v-app>
+		<v-container>
+			<RouterView :key="$route.fullPath"></RouterView>
+		</v-container>
+	</v-app>
 </template>
