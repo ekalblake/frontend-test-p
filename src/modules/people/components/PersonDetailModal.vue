@@ -1,49 +1,47 @@
 <template>
-	<v-dialog :model-value="modelValue" max-width="600" @update:model-value="$emit('update:modelValue', $event)">
-		<v-card>
-			<v-card-title> Detalle del Personaje </v-card-title>
-
-			<v-card-text v-if="peopleStore.isPersonLoading"> Loading... </v-card-text>
-
-			<v-card-text v-else-if="peopleStore.selectedPerson">
-				<p>
-					<strong>Name:</strong>
-					{{ peopleStore.selectedPerson.name }}
-				</p>
-
-				<p>
-					<strong>Gender:</strong>
-					{{ peopleStore.selectedPerson.gender }}
-				</p>
-
-				<p class="mt-4">
-					<strong>Films:</strong>
-				</p>
-
-				<ul>
-					<li v-for="film in peopleStore.selectedPerson.films" :key="film">
-						{{ film }}
-					</li>
-				</ul>
-
-				<p class="mt-4">
-					<strong>Species:</strong>
-				</p>
-
-				<ul v-if="peopleStore.selectedPerson.species.length">
-					<li v-for="specie in peopleStore.selectedPerson.species" :key="specie">
-						{{ specie }}
-					</li>
-				</ul>
-
-				<p v-else>No species available</p>
+	<v-dialog
+		:model-value="modelValue"
+		max-width="1024"
+		@update:model-value="$emit('update:modelValue', $event)"
+		@after-leave="peopleStore.resetSelectedPerson"
+	>
+		<v-card min-height="300">
+			<v-card-text class="justify-center align-center d-flex" v-if="peopleStore.isPersonLoading">
+				<v-progress-circular indeterminate color="primary" />
 			</v-card-text>
+			<template v-if="peopleStore.selectedPerson">
+				<v-img height="180" cover src="https://i.pinimg.com/736x/de/fa/dc/defadc1400875bad29f74179352c606c.jpg">
+					<div class="pa-6">
+						<h1 class="text-h4 font-weight-bold">
+							{{ peopleStore.selectedPerson?.name }}
+						</h1>
+						<span class="text-subtitle-1">
+							{{ peopleStore.selectedPerson.gender }}
+						</span>
+					</div>
+				</v-img>
+				<v-card-text>
+					<v-row>
+						<v-col md="6" cols="12">
+							<strong>Películas:</strong>
+							<ul>
+								<li v-for="film in peopleStore.selectedPerson.films" :key="film">
+									{{ film }}
+								</li>
+							</ul>
+						</v-col>
+						<v-col v-if="peopleStore.selectedPerson.species.length" md="6" cols="12">
+							<strong>Especie:</strong>
 
-			<v-card-actions>
-				<v-spacer />
-
-				<v-btn variant="text" @click="$emit('update:modelValue', false)"> Close </v-btn>
-			</v-card-actions>
+							<ul>
+								<li v-for="specie in peopleStore.selectedPerson.species" :key="specie">
+									{{ specie }}
+								</li>
+							</ul>
+						</v-col>
+					</v-row>
+				</v-card-text>
+			</template>
 		</v-card>
 	</v-dialog>
 </template>

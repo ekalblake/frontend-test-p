@@ -33,6 +33,10 @@ export const usePeopleStore = defineStore("starWars", () => {
 		}
 	};
 
+	const resetSelectedPerson = () => {
+		selectedPerson.value = null;
+	};
+
 	return {
 		people,
 		selectedPerson,
@@ -40,5 +44,6 @@ export const usePeopleStore = defineStore("starWars", () => {
 
 		fetchPeople,
 		fetchPersonById,
+		resetSelectedPerson,
 	};
 });
