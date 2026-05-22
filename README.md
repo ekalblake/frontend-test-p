@@ -1,5 +1,30 @@
 # Vue 3 + TypeScript + Vite
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+<img width="2559" height="810" alt="image" src="https://github.com/user-attachments/assets/0149c6a2-55f9-4b4a-9d36-ff1b66211dee" />
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+Repo en el cual podrás visualizar la lista de personajes de Star Wars
+
+
+También podrás ver a detalle el personaje y en que filmes apareció
+
+<img width="1021" height="440" alt="image" src="https://github.com/user-attachments/assets/10e392a9-046f-47e8-a28a-81f018267e78" />
+
+Distribución Clean Architecture
+
+- src
+    - modules
+        - people
+            - application
+            - components
+            - composables
+            - constants
+            - domain
+                - models
+                - repositories
+            - intfrastructure
+                - api
+                - dtos
+                - mappers
+                - repositories
+            - routes
+            - views
