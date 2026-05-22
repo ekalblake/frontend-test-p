@@ -5,7 +5,7 @@ import PeopleListView from "../views/PeopleListView.vue";
 
 export const peopleRoutes: RouteRecordRaw[] = [
 	{
-		path: "/people",
+		path: "/",
 		name: ROUTES_NAMES.PEOPLE_LIST,
 		component: PeopleListView,
 	},
