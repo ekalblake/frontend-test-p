@@ -17,18 +17,24 @@
 			</v-data-table>
 		</v-row>
 	</v-container>
+	<PersonDetailModal v-model="isDetailModalOpen" />
 </template>
 <script lang="ts" setup>
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 
 import { usePeopleStore } from "../application/store/peopleStore";
 
 import { PEOPLE_TABLE_HEADERS } from "../constants/people-table.constants";
 
+import PersonDetailModal from "../components/PersonDetailModal.vue";
+
 const peopleStore = usePeopleStore();
 
-const handleViewDetail = (id: number) => {
-	//TODO: Open Modal
+const isDetailModalOpen = ref(false);
+
+const handleViewDetail = async (id: number) => {
+	isDetailModalOpen.value = true;
+	await peopleStore.fetchPersonById(id);
 };
 
 onMounted(async () => {
